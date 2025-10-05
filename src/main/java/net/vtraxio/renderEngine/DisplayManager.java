@@ -10,6 +10,7 @@ import java.util.Objects;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.glClearColor;
 import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
@@ -53,6 +54,8 @@ public class DisplayManager {
         glfwShowWindow(window);
 
         GL.createCapabilities(true);
+
+        glClearColor(1, 0, 0, 1);
     }
 
     public static void updateDisplay() {

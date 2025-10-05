@@ -27,18 +27,27 @@ dependencies {
     implementation("org.lwjgl", "lwjgl-par")
     implementation("org.lwjgl", "lwjgl-stb")
     implementation("org.lwjgl", "lwjgl-vulkan")
-    implementation ("org.lwjgl", "lwjgl", classifier = "natives-windows")
-    implementation ("org.lwjgl", "lwjgl-assimp", classifier = "natives-windows")
-    implementation ("org.lwjgl", "lwjgl-bgfx", classifier = "natives-windows")
-    implementation ("org.lwjgl", "lwjgl-glfw", classifier = "natives-windows")
-    implementation ("org.lwjgl", "lwjgl-nanovg", classifier = "natives-windows")
-    implementation ("org.lwjgl", "lwjgl-nuklear", classifier = "natives-windows")
-    implementation ("org.lwjgl", "lwjgl-openal", classifier = "natives-windows")
-    implementation ("org.lwjgl", "lwjgl-opengl", classifier = "natives-windows")
-    implementation ("org.lwjgl", "lwjgl-par", classifier = "natives-windows")
-    implementation ("org.lwjgl", "lwjgl-stb", classifier = "natives-windows")
+    implementation("org.lwjgl", "lwjgl", classifier = "natives-windows")
+    implementation("org.lwjgl", "lwjgl-assimp", classifier = "natives-windows")
+    implementation("org.lwjgl", "lwjgl-bgfx", classifier = "natives-windows")
+    implementation("org.lwjgl", "lwjgl-glfw", classifier = "natives-windows")
+    implementation("org.lwjgl", "lwjgl-nanovg", classifier = "natives-windows")
+    implementation("org.lwjgl", "lwjgl-nuklear", classifier = "natives-windows")
+    implementation("org.lwjgl", "lwjgl-openal", classifier = "natives-windows")
+    implementation("org.lwjgl", "lwjgl-opengl", classifier = "natives-windows")
+    implementation("org.lwjgl", "lwjgl-par", classifier = "natives-windows")
+    implementation("org.lwjgl", "lwjgl-stb", classifier = "natives-windows")
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "net.vtraxio.engineTester.MainGameLoop"
+    }
+
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
